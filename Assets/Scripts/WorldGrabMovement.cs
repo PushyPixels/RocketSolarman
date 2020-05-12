@@ -41,6 +41,7 @@ public class WorldGrabMovement : MonoBehaviour
                     FixedJoint joint = rb.gameObject.AddComponent<FixedJoint>();
                     joint.connectedBody = leftHand.GetComponent<Rigidbody>();
                     leftHandState = HandState.ObjectGrab;
+                    leftHand.GetComponentInChildren<MeshRenderer>().enabled = false;
                 }
             }
         }
@@ -56,6 +57,7 @@ public class WorldGrabMovement : MonoBehaviour
             }
 
             leftHandState = HandState.Empty;
+            leftHand.GetComponentInChildren<MeshRenderer>().enabled = true;
         }
 
         Collider[] rightHandColliders = Physics.OverlapSphere(previousPositionRight, 0.05f*transform.localScale.x, grabbableObjectLayerMask);
@@ -73,6 +75,7 @@ public class WorldGrabMovement : MonoBehaviour
                     FixedJoint joint = rb.gameObject.AddComponent<FixedJoint>();
                     joint.connectedBody = rightHand.GetComponent<Rigidbody>();
                     rightHandState = HandState.ObjectGrab;
+                    rightHand.GetComponentInChildren<MeshRenderer>().enabled = false;
                 }
             }
         }
@@ -88,6 +91,7 @@ public class WorldGrabMovement : MonoBehaviour
             }
 
             rightHandState = HandState.Empty;
+            rightHand.GetComponentInChildren<MeshRenderer>().enabled = true;
         }
 
         if(!skipLeft && leftHandState != HandState.ObjectGrab)
