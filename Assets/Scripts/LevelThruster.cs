@@ -11,6 +11,7 @@ public class LevelThruster : MonoBehaviour
     [Header("Required Scene References")]
     public Transform playerTransform;
     public AudioSource playerThrusterAudio;
+    public ParticleSystem playerParticles;
 
     [Header("Required Component References")]
     public new Rigidbody rigidbody;
@@ -25,11 +26,13 @@ public class LevelThruster : MonoBehaviour
             if(!playerThrusterAudio.isPlaying)
             {
                 playerThrusterAudio.Play();
+                playerParticles.Play();
             }
         }
         else
         {
             playerThrusterAudio.Stop();
+            playerParticles.Stop();
         }
     }
 
