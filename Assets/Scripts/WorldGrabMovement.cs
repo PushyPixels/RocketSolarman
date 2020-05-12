@@ -20,7 +20,6 @@ public class WorldGrabMovement : MonoBehaviour
     private Vector3 righHandGrabOffset;
     private Rigidbody leftHandGrippedObject;
     private Rigidbody rightHandGrippedObject;
-    private bool gripHandled;
 
 	// Update is called once per frame
 	void Update ()
@@ -96,7 +95,6 @@ public class WorldGrabMovement : MonoBehaviour
                 rigidbody.velocity = Vector3.zero;
                 transform.position += previousPositionLeft - leftHand.position;
                 leftHandState = HandState.MovementGrab;
-                gripHandled = true;
             }
             if (leftHandState == HandState.MovementGrab && Input.GetAxis("Oculus_LGrip") < 0.25f)
             {
@@ -104,7 +102,7 @@ public class WorldGrabMovement : MonoBehaviour
                 leftHandState = HandState.Empty;
             }
         }
-        if(!gripHandled && rightHandState != HandState.ObjectGrab)
+        if(rightHandState != HandState.ObjectGrab)
         {
             if (Input.GetAxis("Oculus_RGrip") >= 0.25f)
             {
@@ -121,7 +119,6 @@ public class WorldGrabMovement : MonoBehaviour
 
         previousPositionLeft = leftHand.position;
         previousPositionRight = rightHand.position;
-        gripHandled = false;
     }
 
     void OnValidate()
