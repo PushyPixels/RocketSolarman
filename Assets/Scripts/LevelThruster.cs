@@ -10,6 +10,7 @@ public class LevelThruster : MonoBehaviour
 
     [Header("Required Scene References")]
     public Transform playerTransform;
+    public AudioSource playerThrusterAudio;
 
     [Header("Required Component References")]
     public new Rigidbody rigidbody;
@@ -21,6 +22,14 @@ public class LevelThruster : MonoBehaviour
         {
             //We apply the force to the player's downward transform as we are thrusting the level
             rigidbody.AddForce(-playerTransform.up*force,forceMode);
+            if(!playerThrusterAudio.isPlaying)
+            {
+                playerThrusterAudio.Play();
+            }
+        }
+        else
+        {
+            playerThrusterAudio.Stop();
         }
     }
 

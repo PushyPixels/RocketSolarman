@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2310537928557634659}
+  - component: {fileID: 4011573408631153831}
   - component: {fileID: 3235700786860366081}
   - component: {fileID: 5009766052917766849}
-  - component: {fileID: 4011573408631153831}
   m_Layer: 0
   m_Name: SolarMan
   m_TagString: Untagged
@@ -34,6 +34,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4011573408631153831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649901774958414021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b89cd9628d27747b08c40ca253592e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: -180
+  axisName: Horizontal
 --- !u!54 &3235700786860366081
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -63,20 +77,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.0325
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4011573408631153831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649901774958414021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68b89cd9628d27747b08c40ca253592e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: -180
-  axisName: Horizontal
 --- !u!1001 &7606128232242753527
 PrefabInstance:
   m_ObjectHideFlags: 0
