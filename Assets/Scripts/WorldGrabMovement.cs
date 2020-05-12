@@ -20,6 +20,8 @@ public class WorldGrabMovement : MonoBehaviour
     private Vector3 righHandGrabOffset;
     private Rigidbody leftHandGrippedObject;
     private Rigidbody rightHandGrippedObject;
+    private bool skipLeft;
+    private bool skipRight;
 
 	// Update is called once per frame
 	void Update ()
@@ -88,13 +90,19 @@ public class WorldGrabMovement : MonoBehaviour
             rightHandState = HandState.Empty;
         }
 
-        if(leftHandState != HandState.ObjectGrab)
+        if(!skipLeft && leftHandState != HandState.ObjectGrab)
         {
             if (Input.GetAxis("Oculus_LGrip") >= 0.25f)
             {
                 rigidbody.velocity = Vector3.zero;
                 transform.position += previousPositionLeft - leftHand.position;
                 leftHandState = HandState.MovementGrab;
+
+                if(rightHandState == HandState.MovementGrab)
+                {
+                    skipRight = true;
+                    rightHandState = HandState.Empty;
+                }
             }
             if (leftHandState == HandState.MovementGrab && Input.GetAxis("Oculus_LGrip") < 0.25f)
             {
@@ -102,19 +110,34 @@ public class WorldGrabMovement : MonoBehaviour
                 leftHandState = HandState.Empty;
             }
         }
-        if(rightHandState != HandState.ObjectGrab)
+        if(!skipRight && rightHandState != HandState.ObjectGrab)
         {
             if (Input.GetAxis("Oculus_RGrip") >= 0.25f)
             {
                 rigidbody.velocity = Vector3.zero;
                 transform.position += previousPositionRight - rightHand.position;
                 rightHandState = HandState.MovementGrab;
+
+                if(leftHandState == HandState.MovementGrab)
+                {
+                    skipLeft = true;
+                    leftHandState = HandState.Empty;
+                }
             }
             if (rightHandState == HandState.MovementGrab && Input.GetAxis("Oculus_RGrip") < 0.25f)
             {
                 rigidbody.velocity = (previousPositionRight - rightHand.position) / Time.deltaTime;
                 rightHandState = HandState.Empty;
             }
+        }
+
+        if(skipLeft && Input.GetAxis("Oculus_LGrip") < 0.25f)
+        {
+            skipLeft = false;
+        }
+        if(skipRight && Input.GetAxis("Oculus_RGrip") < 0.25f)
+        {
+            skipRight = false;
         }
 
         previousPositionLeft = leftHand.position;
