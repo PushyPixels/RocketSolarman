@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821198652}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.038, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2310537928557634659}
@@ -4754,6 +4754,52 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &683098471577611528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2276062568364990387}
+  - component: {fileID: 1428387909296200861}
+  m_Layer: 0
+  m_Name: ModelRotator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2276062568364990387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683098471577611528}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3239444493614679277}
+  m_Father: {fileID: 2310537928557634659}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1428387909296200861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683098471577611528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b89cd9628d27747b08c40ca253592e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 180
+  axisName: Horizontal
 --- !u!1 &1649901774958414021
 GameObject:
   m_ObjectHideFlags: 0
@@ -4785,7 +4831,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3239444493614679277}
+  - {fileID: 2276062568364990387}
   - {fileID: 821198653}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4934,42 +4980,42 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2310537928557634659}
+    m_TransformParent: {fileID: 2276062568364990387}
     m_Modifications:
     - target: {fileID: -4216859302048453862, guid: 11bdf3d4e55c26f46989bea813f1b614,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000027956674
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 11bdf3d4e55c26f46989bea813f1b614,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.005
+      value: 0.006678645
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 11bdf3d4e55c26f46989bea813f1b614,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0066786446
+      value: 0.005000001
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 11bdf3d4e55c26f46989bea813f1b614,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.41801012
+      value: 0.34678537
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 11bdf3d4e55c26f46989bea813f1b614,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0010184444
+      value: 0.002419926
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 11bdf3d4e55c26f46989bea813f1b614,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0024038479
+      value: -0.0009796281
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 11bdf3d4e55c26f46989bea813f1b614,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9084387
+      value: 0.93794084
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 11bdf3d4e55c26f46989bea813f1b614,
         type: 3}
