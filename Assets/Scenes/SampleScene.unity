@@ -1275,6 +1275,55 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1423238823}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1837082709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1150463050254571370, guid: b59617a9554e91547990d5f24dfdb519,
+    type: 3}
+  m_PrefabInstance: {fileID: 1150463048297686271}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1837082710
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837082709}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 3
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 56
+  m_CollisionDetection: 0
+--- !u!135 &1837082711
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837082709}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1837082713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837082709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a1649744317edf458463b646bc7fc8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 946236763}
+  rigidbody: {fileID: 1837082710}
 --- !u!4 &1969091478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1150463050254571369, guid: b59617a9554e91547990d5f24dfdb519,
@@ -1294,6 +1343,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 946236762}
     m_Modifications:
+    - target: {fileID: 674272852, guid: b59617a9554e91547990d5f24dfdb519, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 788898850031060452, guid: b59617a9554e91547990d5f24dfdb519,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1150463050254571369, guid: b59617a9554e91547990d5f24dfdb519,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1353,6 +1411,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TurretShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150463050254571370, guid: b59617a9554e91547990d5f24dfdb519,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587300636581777108, guid: b59617a9554e91547990d5f24dfdb519,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b59617a9554e91547990d5f24dfdb519, type: 3}
