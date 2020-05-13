@@ -1206,18 +1206,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 946236762}
     m_Modifications:
-    - target: {fileID: 1969091479, guid: b59617a9554e91547990d5f24dfdb519, type: 3}
-      propertyPath: m_UpVector.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1969091479, guid: b59617a9554e91547990d5f24dfdb519, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1969091479, guid: b59617a9554e91547990d5f24dfdb519, type: 3}
-      propertyPath: m_WorldUpVector.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1150463050254571369, guid: b59617a9554e91547990d5f24dfdb519,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1236,17 +1224,17 @@ PrefabInstance:
     - target: {fileID: 1150463050254571369, guid: b59617a9554e91547990d5f24dfdb519,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1150463050254571369, guid: b59617a9554e91547990d5f24dfdb519,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1150463050254571369, guid: b59617a9554e91547990d5f24dfdb519,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1150463050254571369, guid: b59617a9554e91547990d5f24dfdb519,
         type: 3}
