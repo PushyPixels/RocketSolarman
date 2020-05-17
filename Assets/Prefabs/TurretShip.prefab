@@ -145,10 +145,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6ebe4e3428e084bbf05d4976757333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 2590319979203373311, guid: a84348de521c0c24ea5dd222c2c8c3c0,
+    type: 3}
   bulletSpawnPoint: {fileID: 6884057865548985320}
   aimTarget: {fileID: 674272853}
-  aimWarningPrefab: {fileID: 0}
+  aimWarningPrefab: {fileID: 7234429938578165732, guid: f41e8aa6b1e3c50479c1a905f4e4c7b4,
+    type: 3}
   aimSpeed: 1
   timeToShoot: 1
   range: 1
