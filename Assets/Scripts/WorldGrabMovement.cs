@@ -5,34 +5,59 @@ using UnityEngine.Animations;
 
 public class WorldGrabMovement : MonoBehaviour
 {
-    public enum HandState { Empty, MovementGrab, ObjectGrab }
-
-    public Transform leftHand;
-    public Transform rightHand;
+    public HandInfo leftHand;
+    public HandInfo rightHand;
     public LayerMask grabbableObjectLayerMask = -1;
+
+    [System.Serializable]
+    public class HandInfo
+    {
+        [Header("Required Object References")]
+        public Rigidbody rigidbody;
+        public string gripAxis;
+
+        [Header("Debug Info")]
+        public HandState state;
+        public Vector3 grabOffset;
+        public Rigidbody grippedObject;
+        public Vector3 previousPostion;
+        public bool skip;
+    }
+    public enum HandState { Empty, MovementGrab, ObjectGrab }
 
     [Header("Required Component References")]
     public new Rigidbody rigidbody;
-    private Vector3 previousPositionLeft;
-    private Vector3 previousPositionRight;
-    private HandState leftHandState;
-    private HandState rightHandState;
-    private Vector3 leftHandGrabOffset;
-    private Vector3 righHandGrabOffset;
-    private Rigidbody leftHandGrippedObject;
-    private Rigidbody rightHandGrippedObject;
-    private bool skipLeft;
-    private bool skipRight;
 
 	// Update is called once per frame
 	void Update ()
     {
-        Collider[] leftHandColliders = Physics.OverlapSphere(previousPositionLeft, 0.05f*transform.localScale.x, grabbableObjectLayerMask);
-        if (Input.GetAxis("Oculus_LGrip") >= 0.25f)
+        ObjectGrabbingLogic(leftHand);
+        ObjectGrabbingLogic(rightHand);
+
+        WorldMovementLogic(leftHand,rightHand);
+        WorldMovementLogic(rightHand,leftHand);
+
+        if(leftHand.skip && Input.GetAxis(leftHand.gripAxis) < 0.25f)
         {
-            if (leftHandColliders.Length > 0 && leftHandState == HandState.Empty)
+            leftHand.skip = false;
+        }
+        if(rightHand.skip && Input.GetAxis(rightHand.gripAxis) < 0.25f)
+        {
+            rightHand.skip = false;
+        }
+
+        leftHand.previousPostion = leftHand.rigidbody.transform.position;
+        rightHand.previousPostion = rightHand.rigidbody.transform.position;
+    }
+
+    void ObjectGrabbingLogic(HandInfo hand)
+    {
+        Collider[] colliders = Physics.OverlapSphere(hand.previousPostion, 0.05f*transform.localScale.x, grabbableObjectLayerMask);
+        if (Input.GetAxis(hand.gripAxis) >= 0.25f)
+        {
+            if (colliders.Length > 0 && hand.state == HandState.Empty)
             {
-                Collider firstColliderFound = leftHandColliders[0];
+                Collider firstColliderFound = colliders[0];
                 Rigidbody rb = firstColliderFound.GetComponent<Rigidbody>();
 
                 /*
@@ -45,18 +70,18 @@ public class WorldGrabMovement : MonoBehaviour
 
                 if(rb != null)
                 {
-                    righHandGrabOffset = firstColliderFound.transform.position - leftHand.position;
-                    leftHandGrippedObject = rb;
+                    hand.grabOffset = firstColliderFound.transform.position - hand.rigidbody.transform.position;
+                    hand.grippedObject = rb;
                     FixedJoint joint = rb.gameObject.AddComponent<FixedJoint>();
-                    joint.connectedBody = leftHand.GetComponent<Rigidbody>();
-                    leftHandState = HandState.ObjectGrab;
-                    leftHand.GetComponentInChildren<MeshRenderer>().enabled = false;
+                    joint.connectedBody = hand.rigidbody;
+                    hand.state = HandState.ObjectGrab;
+                    leftHand.rigidbody.GetComponentInChildren<MeshRenderer>().enabled = false;
                 }
             }
         }
-        if (leftHandState == HandState.ObjectGrab && Input.GetAxis("Oculus_LGrip") < 0.25f)
+        if (hand.state == HandState.ObjectGrab && Input.GetAxis(hand.gripAxis) < 0.25f)
         {
-            Rigidbody rb = leftHandGrippedObject;
+            Rigidbody rb = hand.grippedObject;
             FixedJoint joint = rb.GetComponent<FixedJoint>();
             Destroy(joint);
 
@@ -70,115 +95,36 @@ public class WorldGrabMovement : MonoBehaviour
             
             if (rb != null)
             {
-                rb.velocity = (leftHand.position - previousPositionLeft) / Time.deltaTime;
+                rb.velocity = (leftHand.rigidbody.transform.position - hand.previousPostion) / Time.deltaTime;
             }
 
-            leftHandState = HandState.Empty;
-            leftHand.GetComponentInChildren<MeshRenderer>().enabled = true;
+            hand.state = HandState.Empty;
+            hand.rigidbody.GetComponentInChildren<MeshRenderer>().enabled = true;
         }
+    }
 
-        Collider[] rightHandColliders = Physics.OverlapSphere(previousPositionRight, 0.05f*transform.localScale.x, grabbableObjectLayerMask);
-        if (Input.GetAxis("Oculus_RGrip") >= 0.25f)
+    void WorldMovementLogic(HandInfo hand, HandInfo oppositeHand)
+    {
+        if(!hand.skip && hand.state != HandState.ObjectGrab)
         {
-            if (rightHandColliders.Length > 0 && rightHandState == HandState.Empty)
-            {
-                Collider firstColliderFound = rightHandColliders[0];
-                Rigidbody rb = firstColliderFound.GetComponent<Rigidbody>();
-
-                /*
-                ParentConstraint constraint = firstColliderFound.GetComponent<ParentConstraint>();
-                if(constraint != null)
-                {
-                    constraint.enabled = false;
-                }
-                */
-
-                if(rb != null)
-                {
-                    righHandGrabOffset = firstColliderFound.transform.position - rightHand.position;
-                    rightHandGrippedObject = rb;
-                    FixedJoint joint = rb.gameObject.AddComponent<FixedJoint>();
-                    joint.connectedBody = rightHand.GetComponent<Rigidbody>();
-                    rightHandState = HandState.ObjectGrab;
-                    rightHand.GetComponentInChildren<MeshRenderer>().enabled = false;
-                }
-            }
-        }
-        if (rightHandState == HandState.ObjectGrab && Input.GetAxis("Oculus_RGrip") < 0.25f)
-        {
-            Rigidbody rb = rightHandGrippedObject;
-            FixedJoint joint = rb.GetComponent<FixedJoint>();
-            Destroy(joint);
-
-            /*
-            ParentConstraint constraint = rb.GetComponent<ParentConstraint>();
-            if(constraint != null)
-            {
-                constraint.enabled = true;
-            }
-            */
-
-            if (rb != null)
-            {
-                rb.velocity = (rightHand.position - previousPositionRight) / Time.deltaTime;
-            }
-
-            rightHandState = HandState.Empty;
-            rightHand.GetComponentInChildren<MeshRenderer>().enabled = true;
-        }
-
-        if(!skipLeft && leftHandState != HandState.ObjectGrab)
-        {
-            if (Input.GetAxis("Oculus_LGrip") >= 0.25f)
+            if (Input.GetAxis(hand.gripAxis) >= 0.25f)
             {
                 rigidbody.velocity = Vector3.zero;
-                transform.position += previousPositionLeft - leftHand.position;
-                leftHandState = HandState.MovementGrab;
+                transform.position += hand.previousPostion - hand.rigidbody.transform.position;
+                hand.state = HandState.MovementGrab;
 
-                if(rightHandState == HandState.MovementGrab)
+                if(oppositeHand.state == HandState.MovementGrab)
                 {
-                    skipRight = true;
-                    rightHandState = HandState.Empty;
+                    oppositeHand.skip = true;
+                    oppositeHand.state = HandState.Empty;
                 }
             }
-            if (leftHandState == HandState.MovementGrab && Input.GetAxis("Oculus_LGrip") < 0.25f)
+            if (hand.state == HandState.MovementGrab && Input.GetAxis(hand.gripAxis) < 0.25f)
             {
-                rigidbody.velocity = (previousPositionLeft - leftHand.position) / Time.deltaTime;
-                leftHandState = HandState.Empty;
+                rigidbody.velocity = (hand.previousPostion - hand.rigidbody.transform.position) / Time.deltaTime;
+                hand.state = HandState.Empty;
             }
         }
-        if(!skipRight && rightHandState != HandState.ObjectGrab)
-        {
-            if (Input.GetAxis("Oculus_RGrip") >= 0.25f)
-            {
-                rigidbody.velocity = Vector3.zero;
-                transform.position += previousPositionRight - rightHand.position;
-                rightHandState = HandState.MovementGrab;
-
-                if(leftHandState == HandState.MovementGrab)
-                {
-                    skipLeft = true;
-                    leftHandState = HandState.Empty;
-                }
-            }
-            if (rightHandState == HandState.MovementGrab && Input.GetAxis("Oculus_RGrip") < 0.25f)
-            {
-                rigidbody.velocity = (previousPositionRight - rightHand.position) / Time.deltaTime;
-                rightHandState = HandState.Empty;
-            }
-        }
-
-        if(skipLeft && Input.GetAxis("Oculus_LGrip") < 0.25f)
-        {
-            skipLeft = false;
-        }
-        if(skipRight && Input.GetAxis("Oculus_RGrip") < 0.25f)
-        {
-            skipRight = false;
-        }
-
-        previousPositionLeft = leftHand.position;
-        previousPositionRight = rightHand.position;
     }
 
     void OnValidate()

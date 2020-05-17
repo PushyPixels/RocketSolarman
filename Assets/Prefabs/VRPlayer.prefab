@@ -220,7 +220,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154939857955817908}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -242,8 +242,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c219d18673e2f0e40874eeb9c95a3117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHand: {fileID: 154939858028638968}
-  rightHand: {fileID: 154939858535615852}
+  leftHand:
+    rigidbody: {fileID: 154939858028638974}
+    gripAxis: Oculus_LGrip
+    state: 0
+    grabOffset: {x: 0, y: 0, z: 0}
+    grippedObject: {fileID: 0}
+    previousPostion: {x: 0, y: 0, z: 0}
+    skip: 0
+  rightHand:
+    rigidbody: {fileID: 154939858535615842}
+    gripAxis: Oculus_RGrip
+    state: 0
+    grabOffset: {x: 0, y: 0, z: 0}
+    grippedObject: {fileID: 0}
+    previousPostion: {x: 0, y: 0, z: 0}
+    skip: 0
   grabbableObjectLayerMask:
     serializedVersion: 2
     m_Bits: 256
