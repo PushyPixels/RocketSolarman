@@ -60,22 +60,15 @@ public class WorldGrabMovement : MonoBehaviour
                 Collider firstColliderFound = colliders[0];
                 Rigidbody rb = firstColliderFound.GetComponent<Rigidbody>();
 
-                /*
-                ParentConstraint constraint = firstColliderFound.GetComponent<ParentConstraint>();
-                if(constraint != null)
-                {
-                    constraint.enabled = false;
-                }
-                */
-
                 if(rb != null)
                 {
+                    rb.isKinematic = false;
                     hand.grabOffset = firstColliderFound.transform.position - hand.rigidbody.transform.position;
                     hand.grippedObject = rb;
                     FixedJoint joint = rb.gameObject.AddComponent<FixedJoint>();
                     joint.connectedBody = hand.rigidbody;
                     hand.state = HandState.ObjectGrab;
-                    leftHand.rigidbody.GetComponentInChildren<MeshRenderer>().enabled = false;
+                    hand.rigidbody.GetComponentInChildren<MeshRenderer>().enabled = false;
                 }
             }
         }
@@ -84,18 +77,11 @@ public class WorldGrabMovement : MonoBehaviour
             Rigidbody rb = hand.grippedObject;
             FixedJoint joint = rb.GetComponent<FixedJoint>();
             Destroy(joint);
-
-            /*
-            ParentConstraint constraint = rb.GetComponent<ParentConstraint>();
-            if(constraint != null)
-            {
-                constraint.enabled = true;
-            }
-            */
             
             if (rb != null)
             {
-                rb.velocity = (leftHand.rigidbody.transform.position - hand.previousPostion) / Time.deltaTime;
+                rb.isKinematic = true;
+                //rb.velocity = (hand.rigidbody.transform.position - hand.previousPostion) / Time.deltaTime;
             }
 
             hand.state = HandState.Empty;
