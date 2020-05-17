@@ -9,7 +9,7 @@ public class KinematicOnStop : MonoBehaviour
     // Update is called once per physics update
     void FixedUpdate()
     {
-        if(!rigidbody.isKinematic && rigidbody.velocity.magnitude < Physics.sleepThreshold);
+        if(!rigidbody.isKinematic && rigidbody.velocity.magnitude < Physics.sleepThreshold)
         {
             rigidbody.isKinematic = true;
         }
