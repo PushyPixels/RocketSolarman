@@ -859,21 +859,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurretShip
       objectReference: {fileID: 0}
-    - target: {fileID: 2921719470725330568, guid: b59617a9554e91547990d5f24dfdb519,
-        type: 3}
-      propertyPath: aimSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2921719470725330568, guid: b59617a9554e91547990d5f24dfdb519,
-        type: 3}
-      propertyPath: timeToShoot
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2921719470725330568, guid: b59617a9554e91547990d5f24dfdb519,
-        type: 3}
-      propertyPath: range
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b59617a9554e91547990d5f24dfdb519, type: 3}
 --- !u!1001 &5279429631447769624
