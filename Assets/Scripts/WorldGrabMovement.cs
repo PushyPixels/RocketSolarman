@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class WorldGrabMovement : MonoBehaviour
 {
@@ -34,6 +35,14 @@ public class WorldGrabMovement : MonoBehaviour
                 Collider firstColliderFound = leftHandColliders[0];
                 Rigidbody rb = firstColliderFound.GetComponent<Rigidbody>();
 
+                /*
+                ParentConstraint constraint = firstColliderFound.GetComponent<ParentConstraint>();
+                if(constraint != null)
+                {
+                    constraint.enabled = false;
+                }
+                */
+
                 if(rb != null)
                 {
                     righHandGrabOffset = firstColliderFound.transform.position - leftHand.position;
@@ -51,6 +60,14 @@ public class WorldGrabMovement : MonoBehaviour
             FixedJoint joint = rb.GetComponent<FixedJoint>();
             Destroy(joint);
 
+            /*
+            ParentConstraint constraint = rb.GetComponent<ParentConstraint>();
+            if(constraint != null)
+            {
+                constraint.enabled = true;
+            }
+            */
+            
             if (rb != null)
             {
                 rb.velocity = (leftHand.position - previousPositionLeft) / Time.deltaTime;
@@ -68,6 +85,14 @@ public class WorldGrabMovement : MonoBehaviour
                 Collider firstColliderFound = rightHandColliders[0];
                 Rigidbody rb = firstColliderFound.GetComponent<Rigidbody>();
 
+                /*
+                ParentConstraint constraint = firstColliderFound.GetComponent<ParentConstraint>();
+                if(constraint != null)
+                {
+                    constraint.enabled = false;
+                }
+                */
+
                 if(rb != null)
                 {
                     righHandGrabOffset = firstColliderFound.transform.position - rightHand.position;
@@ -84,6 +109,14 @@ public class WorldGrabMovement : MonoBehaviour
             Rigidbody rb = rightHandGrippedObject;
             FixedJoint joint = rb.GetComponent<FixedJoint>();
             Destroy(joint);
+
+            /*
+            ParentConstraint constraint = rb.GetComponent<ParentConstraint>();
+            if(constraint != null)
+            {
+                constraint.enabled = true;
+            }
+            */
 
             if (rb != null)
             {

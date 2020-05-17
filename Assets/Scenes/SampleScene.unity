@@ -737,7 +737,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1837082713
+--- !u!114 &1837082712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -845,12 +845,12 @@ PrefabInstance:
     - target: {fileID: 1150463050254571369, guid: b59617a9554e91547990d5f24dfdb519,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.22
+      value: 0.473
       objectReference: {fileID: 0}
     - target: {fileID: 1150463050254571369, guid: b59617a9554e91547990d5f24dfdb519,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.074
       objectReference: {fileID: 0}
     - target: {fileID: 1150463050254571369, guid: b59617a9554e91547990d5f24dfdb519,
         type: 3}
