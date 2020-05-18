@@ -60,6 +60,13 @@ public class WorldGrabMovement : MonoBehaviour
                 Collider firstColliderFound = colliders[0];
                 Rigidbody rb = firstColliderFound.GetComponent<Rigidbody>();
 
+                Spawnable spawnable = firstColliderFound.GetComponent<Spawnable>();
+                if(spawnable)
+                { 
+                    rb = Instantiate(spawnable.spawnPrefab,rb.transform.position,rb.transform.rotation,GameManager.instance.levelTransform);
+                    rb.transform.localPosition = Vector3.Scale(rb.transform.localPosition, new Vector3(1.0f,1.0f,0.0f));
+                }
+
                 if(rb != null)
                 {
                     rb.isKinematic = false;
