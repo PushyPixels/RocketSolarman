@@ -63,7 +63,7 @@ public class WorldGrabMovement : MonoBehaviour
                 Spawnable spawnable = firstColliderFound.GetComponent<Spawnable>();
                 if(spawnable)
                 { 
-                    rb = Instantiate(spawnable.spawnPrefab,rb.transform.position,rb.transform.rotation,GameManager.instance.levelTransform);
+                    rb = Instantiate(spawnable.spawnPrefab,rb.transform.position,Quaternion.identity,GameManager.instance.levelTransform);
                     rb.transform.localPosition = Vector3.Scale(rb.transform.localPosition, new Vector3(1.0f,1.0f,0.0f));
                 }
 
@@ -73,6 +73,7 @@ public class WorldGrabMovement : MonoBehaviour
                     hand.grabOffset = firstColliderFound.transform.position - hand.rigidbody.transform.position;
                     hand.grippedObject = rb;
                     FixedJoint joint = rb.gameObject.AddComponent<FixedJoint>();
+                    joint.enablePreprocessing = false;
                     joint.connectedBody = hand.rigidbody;
                     hand.state = HandState.ObjectGrab;
                     hand.rigidbody.GetComponentInChildren<MeshRenderer>().enabled = false;
