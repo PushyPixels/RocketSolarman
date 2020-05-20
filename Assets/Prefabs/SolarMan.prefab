@@ -4822,6 +4822,7 @@ GameObject:
   - component: {fileID: 3235700786860366081}
   - component: {fileID: 5009766052917766849}
   - component: {fileID: 174193986}
+  - component: {fileID: 5279429631447769627}
   m_Layer: 0
   m_Name: SolarMan
   m_TagString: Player
@@ -4984,6 +4985,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5279429631447769627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649901774958414021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d70e44454126cc48874cb56e81d6029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonName: Guns
+  prefab: {fileID: 3890092938538813917, guid: e6ccd207f125a034889938d8c85dcf6f, type: 3}
 --- !u!1001 &7606128232242753527
 PrefabInstance:
   m_ObjectHideFlags: 0
